@@ -1,44 +1,36 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Domain;
+using Application.Projects.DTOs;
+using Application.Projects.Handlers;
 using Microsoft.AspNetCore.Mvc;
-//using API.Models;
 
 namespace API.Controllers {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProjectController : ControllerBase {
-        private readonly IUnitOfWork _unitOfWork;
-
-        public ProjectController(IUnitOfWork unitOfWork) {
-            _unitOfWork = unitOfWork;
-        }
+    public class ProjectController : BaseController {
 
         // GET api/project
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<string>>> Getstrings() {
-            var projects = await _unitOfWork.Projects.GetAll();
-            return Ok(projects);
+        public async Task<ActionResult<IEnumerable<ProjectGetDto>>> GetProjects() {
+            return Ok(await Mediator.Send(new GetProjects.Query()));
         }
 
         // GET api/project/5
         [HttpGet("{id}")]
-        public ActionResult<string> GetstringById(int id) {
-            return null;
+        public async Task<ActionResult<ProjectGetDto>> GetProjectById(int id) {
+            return Ok(await Mediator.Send(new GetProjectById.Query { Id = id }));
         }
 
         // POST api/project
         [HttpPost("")]
-        public void Poststring(string value) { }
+        public async void CreateProject(ProjectCreateDto newProject) {
+            // TODO
+        }
 
         // PUT api/project/5
         [HttpPut("{id}")]
-        public void Putstring(int id, string value) { }
+        public void UpdateProjectById(int id, string value) { }
 
         // DELETE api/project/5
         [HttpDelete("{id}")]
-        public void DeletestringById(int id) { }
+        public void DeleteProjectById(int id) { }
     }
 }

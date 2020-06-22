@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Domain;
 
-namespace Domain {
-    public class Project {
+namespace Application.Projects.DTOs {
+    public class ProjectGetDto {
         public int Id { get; set; }
 
         [Required]

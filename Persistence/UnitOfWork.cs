@@ -2,9 +2,9 @@ using Domain;
 
 namespace Persistence {
     public class UnitOfWork : IUnitOfWork {
-        private readonly AppContext _context;
+        private readonly DataContext _context;
 
-        public UnitOfWork(AppContext context) {
+        public UnitOfWork(DataContext context) {
             _context = context;
             Users = new UserRepository(_context);
             Tasks = new TaskRepository(_context);

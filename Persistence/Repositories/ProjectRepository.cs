@@ -5,14 +5,14 @@ using Domain;
 
 namespace Persistence {
     public class ProjectRepository : Repository<Project>, IProjectRepository {
-        public ProjectRepository(AppContext context) : base(context) { }
+        public ProjectRepository(DataContext context) : base(context) { }
 
         public IEnumerable<Project> GetProjectsWithUser(Guid userId, int count) {
-            return AppContext.Projects.Take(count).ToList();
+            return DataContext.Projects.Take(count).ToList();
         }
 
-        public AppContext AppContext {
-            get { return Context as AppContext; }
+        public DataContext DataContext {
+            get { return Context as DataContext; }
         }
     }
 }

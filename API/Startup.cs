@@ -1,3 +1,8 @@
+using Application.Projects.Handlers;
+using Application.Projects.Mappings;
+using AutoMapper;
+using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,14 +26,17 @@ namespace API {
         public void ConfigureServices(IServiceCollection services) {
             services.AddControllers();
 
-            services.AddDbContext<AppContext>(opt => {
+            services.AddDbContext<DataContext>(opt => {
                 opt.UseSqlite(Configuration.GetConnectionString("Default"));
             });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddCors(opt => {
                 opt.AddPolicy("CorsPolicy", policy => {
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
+            services.AddMediatR(typeof(GetProjects.Handler).Assembly);
+            services.AddAutoMapper(typeof(ProjectMappings));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

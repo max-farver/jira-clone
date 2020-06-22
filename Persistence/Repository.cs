@@ -36,12 +36,12 @@ namespace Persistence {
             return await _entities.SingleOrDefaultAsync(predicate);
         }
 
-        public async void Add(TEntity entity) {
-            await _entities.AddAsync(entity);
+        public void Add(TEntity entity) {
+            _entities.Add(entity);
         }
 
-        public async void AddRange(IEnumerable<TEntity> entities) {
-            await _entities.AddRangeAsync(entities);
+        public void AddRange(IEnumerable<TEntity> entities) {
+            _entities.AddRange(entities);
         }
 
         public void Remove(TEntity entity) {
