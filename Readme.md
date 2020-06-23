@@ -21,15 +21,25 @@ View the application live at **notareallink<span></span>.com**
 - .NET Identity for Auth
 - Entity Framework for an ORM
 - PostgreSql
-- MediatR
 - SignalR for PubSub (realtime comments)
+- XUnit for testing
 
 ### Frontend
 
 - React (create-react-app)
-  - _This may change in the future_
+  - _This may change in the future (NextJS, Angular, Vue, etc.)_
 - Typescript
 - TailwindCSS
+
+## Architecture Choices
+
+I tried to adhere to Clean Architecture and decouple my Persistence, Domain, Application, and API layers as much as possible. Dependency injection is used throughout the project to promote easy testing and code uniformity.
+
+I elected to go with a Code First workflow for the Database part of the project. I don't suspect that Discount Jira will end up getting so complex that queries need to be optimized further than what Entity Framework will do for me, and it allows me to focus on the code part of the project instead of fiddling with the Database all the time.
+
+I am using a UnitOfWork pattern along with a Repository/Service pattern to further the separation of concerns in the project.
+
+Data Transfer Objects are used between the Controllers and Services to allow for passing models in a different shape to and from the client.
 
 ## Installing Discount Jira
 
