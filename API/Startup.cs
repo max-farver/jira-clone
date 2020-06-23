@@ -16,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Microsoft.AspNetCore.Identity;
+using Domain.Users;
 
 namespace API
 {
@@ -53,7 +55,6 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
-            // services.AddMediatR(typeof(GetProjects.Handler).Assembly);
             services.AddAutoMapper(typeof(ProjectMappings).Assembly);
             services.AddSwaggerGen(opt =>
             {
@@ -69,6 +70,13 @@ namespace API
             });
 
             services.AddScoped<IProjectService, ProjectService>();
+
+            var builder = services.AddIdentityCore<User>();
+            var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+            identityBuilder.AddEntityFrameworkStores<DataContext>(); // pass in our data context
+            identityBuilder.AddSignInManager<SignInManager<User>>(); // to be able to use username and password
+
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

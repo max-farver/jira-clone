@@ -1,6 +1,7 @@
 using System;
+using Domain.Projects;
 
-namespace Domain
+namespace Domain.Sprints
 {
     public class Sprint
     {

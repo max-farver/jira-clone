@@ -36,7 +36,11 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectGetDto>> GetProjectById(int id)
         {
-            return Ok(await _projectService.GetProjectById(id));
+            var project = await _projectService.GetProjectById(id);
+            if (project == null)
+                return NotFound();
+
+            return Ok();
         }
 
         // POST api/project

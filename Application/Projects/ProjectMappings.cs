@@ -1,6 +1,6 @@
 using Application.Projects.DTOs;
 using AutoMapper;
-using Domain;
+using Domain.Projects;
 
 namespace Application.Projects
 {

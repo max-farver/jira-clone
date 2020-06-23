@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Domain;
+using Domain.Users;
 
 namespace Application.Projects.DTOs
 {

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Domain.Projects;
+using Domain.Users;
 
-namespace Domain
+namespace Domain.Tasks
 {
     public enum Status
     {

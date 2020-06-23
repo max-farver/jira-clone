@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Projects.DTOs;
 using AutoMapper;
+using Domain.Projects;
 using Domain;
 
 namespace Application.Projects
@@ -37,6 +38,9 @@ namespace Application.Projects
         public async Task<ProjectGetDto> GetProjectById(int Id)
         {
             var project = await Projects.Get(Id);
+            if (project == null)
+                return null;
+
             var projectToReturn = _mapper.Map<Project, ProjectGetDto>(project);
             return projectToReturn;
         }
@@ -53,7 +57,7 @@ namespace Application.Projects
             project.Name = projectToUpdate.Name ?? project.Name;
             project.Description = projectToUpdate.Description ?? project.Description;
             project.Version = projectToUpdate.Version != 0 ? projectToUpdate.Version : project.Version;
-            project.Members = projectToUpdate.Members ?? project.Members;
+            project.Members = projectToUpdate.Members != null ? projectToUpdate.Members : project.Members;
             Projects.Add(project);
             _unitOfWork.Complete();
         }

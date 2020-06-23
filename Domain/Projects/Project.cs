@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Domain.Users;
 
-namespace Domain
+namespace Domain.Projects
 {
     public class Project
     {
