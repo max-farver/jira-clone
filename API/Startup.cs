@@ -1,11 +1,9 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Application.Projects.Handlers;
-using Application.Projects.Mappings;
 using AutoMapper;
 using Domain;
-using MediatR;
+using Application.Projects;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,8 +53,8 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                 });
             });
-            services.AddMediatR(typeof(GetProjects.Handler).Assembly);
-            services.AddAutoMapper(typeof(ProjectMappings));
+            // services.AddMediatR(typeof(GetProjects.Handler).Assembly);
+            services.AddAutoMapper(typeof(ProjectMappings).Assembly);
             services.AddSwaggerGen(opt =>
             {
                 opt.SwaggerDoc("DiscountJiraApiSpec", new OpenApiInfo()
@@ -69,6 +67,8 @@ namespace API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 opt.IncludeXmlComments(xmlPath);
             });
+
+            services.AddScoped<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

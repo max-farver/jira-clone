@@ -1,20 +1,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Domain;
 
-namespace Domain
+namespace Application.Projects.DTOs
 {
-    public class Project
+    public class ProjectUpdateDto
     {
-        public int Id { get; set; }
-
         [Required]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
-        [Required]
         public double Version { get; set; }
         public List<User> Members { get; set; }
-        public bool isArchived { get; set; }
-        public bool isDeleted { get; set; }
     }
 }

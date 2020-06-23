@@ -7,7 +7,6 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="*"/>
     <PackageReference Include="AutoMapper" Version="*"/>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0"/>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="*"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
