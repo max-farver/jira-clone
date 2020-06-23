@@ -4,6 +4,7 @@ using Application.Projects;
 using Application.Projects.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace API.Controllers
 {
     [Route("[controller]")]
@@ -16,7 +17,6 @@ namespace API.Controllers
             _projectService = projectService;
         }
 
-        // GET api/project
         /// <summary>
         /// Get a list of projects.
         /// </summary>
@@ -27,7 +27,6 @@ namespace API.Controllers
             return Ok(await _projectService.GetProjects());
         }
 
-        // GET api/project/5
         /// <summary>
         /// Get an individual project based on it's Id.
         /// </summary>
@@ -36,14 +35,9 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProjectGetDto>> GetProjectById(int id)
         {
-            var project = await _projectService.GetProjectById(id);
-            if (project == null)
-                return NotFound();
-
-            return Ok();
+            return Ok(await _projectService.GetProjectById(id));
         }
 
-        // POST api/project
         /// <summary>
         /// Create a new project.
         /// </summary>
@@ -56,29 +50,27 @@ namespace API.Controllers
             return Ok();
         }
 
-        // PUT api/project/5
         /// <summary>
         /// Update an existing project.
         /// </summary>
         /// <param name="updatedProject">The project object containing the information used to update the existing project.</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public ActionResult UpdateProjectById(ProjectUpdateDto updatedProject)
+        public async Task<ActionResult> UpdateProjectById(ProjectUpdateDto updatedProject)
         {
-            _projectService.UpdateProject(updatedProject);
+            await _projectService.UpdateProject(updatedProject);
             return Ok();
         }
 
-        // DELETE api/project/5
         /// <summary>
         /// Delete a project based on it's Id.
         /// </summary>
         /// <param name="id">The Id of the project.</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public ActionResult DeleteProjectById(int id)
+        public async Task<ActionResult> DeleteProjectById(int id)
         {
-            _projectService.DeleteProject(id);
+            await _projectService.DeleteProject(id);
             return Ok();
         }
     }

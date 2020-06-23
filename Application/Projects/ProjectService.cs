@@ -4,6 +4,8 @@ using Application.Projects.DTOs;
 using AutoMapper;
 using Domain.Projects;
 using Domain;
+using Application.Errors;
+using System.Net;
 
 namespace Application.Projects
 {
@@ -12,8 +14,8 @@ namespace Application.Projects
         Task<IEnumerable<ProjectGetDto>> GetProjects();
         Task<ProjectGetDto> GetProjectById(int Id);
         void CreateProject(ProjectCreateDto projectToCreate);
-        void UpdateProject(ProjectUpdateDto projectToUpdate);
-        void DeleteProject(int Id);
+        Task UpdateProject(ProjectUpdateDto projectToUpdate);
+        Task DeleteProject(int Id);
     }
     public class ProjectService : IProjectService
     {
@@ -38,9 +40,8 @@ namespace Application.Projects
         public async Task<ProjectGetDto> GetProjectById(int Id)
         {
             var project = await Projects.Get(Id);
-            if (project == null)
-                return null;
-
+            if (project != null)
+                throw new RestException(HttpStatusCode.NotFound, new { Project = "No project with that Id" });
             var projectToReturn = _mapper.Map<Project, ProjectGetDto>(project);
             return projectToReturn;
         }
@@ -51,9 +52,12 @@ namespace Application.Projects
             _unitOfWork.Complete();
         }
 
-        public async void UpdateProject(ProjectUpdateDto projectToUpdate)
+        public async Task UpdateProject(ProjectUpdateDto projectToUpdate)
         {
             var project = await Projects.Get(projectToUpdate.Id);
+            if (project != null)
+                throw new RestException(HttpStatusCode.NotFound, new { Project = "No project with that Id" });
+
             project.Name = projectToUpdate.Name ?? project.Name;
             project.Description = projectToUpdate.Description ?? project.Description;
             project.Version = projectToUpdate.Version != 0 ? projectToUpdate.Version : project.Version;
@@ -62,9 +66,12 @@ namespace Application.Projects
             _unitOfWork.Complete();
         }
 
-        public async void DeleteProject(int Id)
+        public async Task DeleteProject(int Id)
         {
             var project = await Projects.Get(Id);
+            if (project != null)
+                throw new RestException(HttpStatusCode.NotFound, new { Project = "No project with that Id" });
+
             Projects.Remove(project);
             _unitOfWork.Complete();
         }
