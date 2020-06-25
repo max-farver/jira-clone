@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountJira.Core\DiscountJira.Core.csproj"/>
+    <ProjectReference Include="..\DiscountJira.Persistence\DiscountJira.Persistence.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="*"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="*"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="*"/>
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+</Project>
