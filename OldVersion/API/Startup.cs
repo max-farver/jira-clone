@@ -19,6 +19,8 @@ using Persistence;
 using Microsoft.AspNetCore.Identity;
 using Domain.Users;
 using API.Middleware;
+using Application.Interfaces;
+using Infrastructure.Security;
 
 namespace API
 {
@@ -70,6 +72,8 @@ namespace API
                 opt.IncludeXmlComments(xmlPath);
             });
 
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IProjectService, ProjectService>();
 
             var builder = services.AddIdentityCore<User>();
