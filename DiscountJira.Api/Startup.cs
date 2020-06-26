@@ -44,7 +44,7 @@ namespace DiscountJira.Api
                 });
             });
 
-            services.AddAutoMapper(typeof(ProjectProfile).Assembly);
+            services.AddAutoMapper(typeof(ProjectProfile), typeof(TaskItemProfile));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProjectService, ProjectService>();

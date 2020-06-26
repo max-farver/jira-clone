@@ -8,7 +8,8 @@ namespace DiscountJira.Api.DataMappers
     {
         public ProjectProfile()
         {
-            this.CreateMap<Project, ProjectDto>();
+            CreateMap<Project, ProjectDto>();
+            CreateMap<Project, ProjectSummaryDto>();
         }
     }
 }

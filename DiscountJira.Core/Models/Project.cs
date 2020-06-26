@@ -16,8 +16,8 @@ namespace DiscountJira.Core.Models
 
         [Required]
         public double Version { get; set; }
-        public List<AppUser> Members { get; set; }
-        public List<TaskItem> Tasks { get; set; }
+        public IEnumerable<AppUser> Members { get; set; }
+        public IEnumerable<TaskItem> Tasks { get; set; }
         public bool isArchived { get; set; }
         public bool isDeleted { get; set; }
     }

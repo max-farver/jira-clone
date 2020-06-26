@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0"/>
+    <PackageReference Include="xunit" Version="2.4.0"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0"/>
+    <PackageReference Include="coverlet.collector" Version="1.2.0"/>
+    <PackageReference Include="Moq" Version="*"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountJira.Api\DiscountJira.Api.csproj"/>
+    <ProjectReference Include="..\DiscountJira.Core\DiscountJira.Core.csproj"/>
+    <ProjectReference Include="..\DiscountJira.Infrastructure\DiscountJira.Infrastructure.csproj"/>
+    <ProjectReference Include="..\DiscountJira.Persistence\DiscountJira.Persistence.csproj"/>
+  </ItemGroup>
+</Project>

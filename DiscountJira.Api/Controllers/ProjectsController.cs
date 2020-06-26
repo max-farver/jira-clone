@@ -27,14 +27,14 @@ namespace DiscountJira.Api.Controllers
 
         }
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<ProjectDto>>> Get()
+        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects()
         {
             var results = await _projectService.GetProjects();
             return Ok(_mapper.Map<IEnumerable<ProjectDto>>(results));
         }
 
-        [HttpGet("/{id}")]
-        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjectById(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProjectDto>> GetProjectById(int id)
         {
             var project = await _projectService.GetProjectById(id);
             if (project == null)
@@ -55,7 +55,7 @@ namespace DiscountJira.Api.Controllers
             return BadRequest("Could not create that project.");
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
             var project = await _projectService.GetProjectById(id);

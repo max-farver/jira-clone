@@ -25,7 +25,7 @@ namespace DiscountJira.Core.Models
         public DateTime EstimatedTime { get; set; }
         [Required]
         public Status Status { get; set; }
-        public List<AppUser> AssignedMembers { get; set; }
+        public IEnumerable<AppUser> AssignedMembers { get; set; }
         public bool isArchived { get; set; }
         public bool isDeleted { get; set; }
     }

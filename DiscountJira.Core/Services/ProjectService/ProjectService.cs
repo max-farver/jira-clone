@@ -15,7 +15,6 @@ namespace DiscountJira.Core.Services.ProjectService
         {
             _unitOfWork = unitOfWork;
             _projects = unitOfWork.Projects;
-
         }
         public async Task<IEnumerable<Project>> GetProjects()
         {
@@ -37,7 +36,7 @@ namespace DiscountJira.Core.Services.ProjectService
             oldProject.Description = updatedProject.Description ?? oldProject.Description;
             oldProject.Version = updatedProject.Version != 0 ? updatedProject.Version : oldProject.Version;
             oldProject.Members = updatedProject.Members != null ? updatedProject.Members : oldProject.Members;
-            _projects.Add(oldProject);
+            // _projects.Add(oldProject);
             return (await _unitOfWork.Complete()) > 0;
         }
         public async Task<bool> DeleteProject(Project projectToDelete)
