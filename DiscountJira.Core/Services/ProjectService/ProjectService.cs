@@ -48,5 +48,6 @@ namespace DiscountJira.Core.Services.ProjectService
             _projects.Remove(projectToDelete);
             return (await _unitOfWork.Complete()) > 0;
         }
+
     }
 }

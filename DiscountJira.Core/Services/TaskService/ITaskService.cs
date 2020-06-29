@@ -6,8 +6,8 @@ namespace DiscountJira.Core.Services.ProjectService
 {
     public interface ITaskService
     {
-        Task<bool> CreateTask(Project projectToCreate);
-        Task<bool> UpdateTask(Project oldProject, Project updatedProject);
-        Task<bool> DeleteTask(Project projectToDelete);
+        Task<bool> CreateTask(Project project, TaskItem newTask);
+        Task<bool> UpdateTask(TaskItem oldTask, TaskItem updatedTask);
+        Task<bool> DeleteTask(TaskItem taskToDelete);
     }
 }

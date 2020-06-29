@@ -55,6 +55,22 @@ namespace DiscountJira.Api.Controllers
             return BadRequest("Could not create that project.");
         }
 
+        // TODO
+        // PUT method to update a project
+        [HttpPut("/{id}")]
+        public async Task<IActionResult> UpdateProjectDetails(int id, ProjectDto updatedProject)
+        {
+            var oldProject = await _projectService.GetProjectById(id, false);
+
+            if (oldProject == null)
+                return NotFound("Project with that Id not found.");
+
+            if (await _projectService.UpdateProject(oldProject, _mapper.Map<Project>(updatedProject)))
+                return Ok();
+            return BadRequest("Could not delete that project.");
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {

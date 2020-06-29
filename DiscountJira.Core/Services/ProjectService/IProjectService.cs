@@ -11,5 +11,7 @@ namespace DiscountJira.Core.Services.ProjectService
         Task<bool> CreateProject(Project projectToCreate);
         Task<bool> UpdateProject(Project oldProject, Project updatedProject);
         Task<bool> DeleteProject(Project projectToDelete);
+
+
     }
 }
