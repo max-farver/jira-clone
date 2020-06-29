@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DiscountJira.Persistence.Migrations
 {
-    public partial class InitialModels : Migration
+    public partial class TryThisAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

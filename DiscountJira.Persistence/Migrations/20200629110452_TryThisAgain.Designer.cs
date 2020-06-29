@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountJira.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200626015525_ProjectSeedData")]
-    partial class ProjectSeedData
+    [Migration("20200629110452_TryThisAgain")]
+    partial class TryThisAgain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,32 +76,6 @@ namespace DiscountJira.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "value 101",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "value 102",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "value 103",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("DiscountJira.Core.Models.Sprint", b =>

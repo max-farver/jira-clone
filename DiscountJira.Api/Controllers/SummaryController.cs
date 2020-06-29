@@ -26,7 +26,7 @@ namespace DiscountJira.Api.Controllers
         [HttpGet("")]
         public async Task<ActionResult<UserSummaryDto>> GetSummary()
         {
-            var projects = await _projectService.GetProjects();
+            var projects = await _projectService.GetProjects(true);
             IEnumerable<TaskItem> tasks = new List<TaskItem>();
 
             foreach (var project in projects)

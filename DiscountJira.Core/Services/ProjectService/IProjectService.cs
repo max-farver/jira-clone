@@ -6,8 +6,8 @@ namespace DiscountJira.Core.Services.ProjectService
 {
     public interface IProjectService
     {
-        Task<IEnumerable<Project>> GetProjects();
-        Task<Project> GetProjectById(int Id);
+        Task<IEnumerable<Project>> GetProjects(bool includeTasks);
+        Task<Project> GetProjectById(int Id, bool includeTasks);
         Task<bool> CreateProject(Project projectToCreate);
         Task<bool> UpdateProject(Project oldProject, Project updatedProject);
         Task<bool> DeleteProject(Project projectToDelete);

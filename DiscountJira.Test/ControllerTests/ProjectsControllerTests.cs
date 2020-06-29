@@ -51,7 +51,7 @@ namespace DiscountJira.Test.ControllerTests
                 };
 
             var mockProjectService = new Mock<IProjectService>();
-            mockProjectService.Setup(x => x.GetProjects()).Returns(Task.FromResult(projects));
+            mockProjectService.Setup(x => x.GetProjects(false)).Returns(Task.FromResult(projects));
             var profile = new ProjectProfile();
             var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile(profile));
             var mockMapper = new Mock<Mapper>(mapperConfig);

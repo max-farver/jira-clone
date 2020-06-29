@@ -16,12 +16,16 @@ namespace DiscountJira.Core.Services.ProjectService
             _unitOfWork = unitOfWork;
             _projects = unitOfWork.Projects;
         }
-        public async Task<IEnumerable<Project>> GetProjects()
+        public async Task<IEnumerable<Project>> GetProjects(bool includeTasks)
         {
+            if (includeTasks)
+                return await _projects.GetProjectsWithTasks();
             return await _projects.GetAll();
         }
-        public async Task<Project> GetProjectById(int Id)
+        public async Task<Project> GetProjectById(int Id, bool includeTasks)
         {
+            if (includeTasks)
+                return await _projects.GetProjectByIdWithTasks(Id);
             return await _projects.Get(Id);
 
         }

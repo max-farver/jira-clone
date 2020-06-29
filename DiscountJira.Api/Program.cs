@@ -25,6 +25,7 @@ namespace DiscountJira.Api
                 {
                     var context = services.GetRequiredService<DataContext>();
                     context.Database.Migrate();
+                    Seed.SeedData(context).Wait();
                 }
                 catch (Exception e)
                 {

@@ -27,16 +27,16 @@ namespace DiscountJira.Api.Controllers
 
         }
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects()
+        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects(bool includeTasks = false)
         {
-            var results = await _projectService.GetProjects();
+            var results = await _projectService.GetProjects(includeTasks);
             return Ok(_mapper.Map<IEnumerable<ProjectDto>>(results));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProjectDto>> GetProjectById(int id)
+        public async Task<ActionResult<ProjectDto>> GetProjectById(int id, bool includeTasks = false)
         {
-            var project = await _projectService.GetProjectById(id);
+            var project = await _projectService.GetProjectById(id, includeTasks);
             if (project == null)
                 return NotFound("Project with that Id not found.");
 
@@ -58,7 +58,7 @@ namespace DiscountJira.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
-            var project = await _projectService.GetProjectById(id);
+            var project = await _projectService.GetProjectById(id, false);
             if (project == null)
                 return NotFound("Project with that Id not found.");
 

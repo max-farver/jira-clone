@@ -74,32 +74,6 @@ namespace DiscountJira.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "value 101",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "value 102",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "value 103",
-                            Version = 1.0,
-                            isArchived = false,
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("DiscountJira.Core.Models.Sprint", b =>

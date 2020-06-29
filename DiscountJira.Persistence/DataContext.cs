@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DiscountJira.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,25 +17,6 @@ namespace DiscountJira.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Project>().HasData(
-                new Project
-                {
-                    Id = 1,
-                    Name = "value 101",
-                    Version = 1.0
-                },
-                new Project
-                {
-                    Id = 2,
-                    Name = "value 102",
-                    Version = 1.0
-                },
-                new Project
-                {
-                    Id = 3,
-                    Name = "value 103",
-                    Version = 1.0
-                });
         }
     }
 }
