@@ -24,7 +24,6 @@ namespace DiscountJira.Api.Controllers
             _linkGenerator = linkGenerator;
             _mapper = mapper;
             _projectService = projectService;
-
         }
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects(bool includeTasks = false)
@@ -55,8 +54,6 @@ namespace DiscountJira.Api.Controllers
             return BadRequest("Could not create that project.");
         }
 
-        // TODO
-        // PUT method to update a project
         [HttpPut("/{id}")]
         public async Task<IActionResult> UpdateProjectDetails(int id, ProjectDto updatedProject)
         {
